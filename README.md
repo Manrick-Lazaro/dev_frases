@@ -8,7 +8,7 @@ Dev frases é um sistema simples de geração aleatoria de frases baseados em al
 
 o intuito de criação desse projeto é de somente estudos relacionados ao frontend, afim de entender e praticar as principais ferramentas do React.
 
-entre algumas coisas que foram implementada nesse projeto está:
+entre algumas coisas que foram implementadas nesse projeto está:
 * interação de listas com o *.map*
 * criação e alteração de estado de objetos com o *useStatus*
 * renderização condicional
