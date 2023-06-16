@@ -1,7 +1,21 @@
 import logo  from "./assets/logo.png"
 import './App.css'
+import { useState } from "react"
+import frases from "./frases"
 
 function App() {
+  const [text, setText] = useState("")
+  const [categorieSelected, setCategorieSelected] = useState(0)
+  
+  function categorieSelection(id: number) {
+    setCategorieSelected(id - 1)
+  }
+
+  function handleText() {
+    const index = Math.floor(Math.random() * frases[categorieSelected].texts.length)
+    setText(frases[categorieSelected].texts[index])
+  }
+
   return (
     <div className='container'>
       <img className="logo" src={logo} alt="logo da dev frases" />
@@ -9,13 +23,24 @@ function App() {
       <h2 className='title'>Categorias</h2>
 
       <section className='categories_section'>
-        <button className='button_category'>Bem estar</button>
-        <button className='button_category'>bom dia</button>
+        {frases.map( (item, index) => (
+          <button 
+            className='button_category' 
+            key={item.id}
+            style={{
+              borderWidth: item.categorie === frases[categorieSelected].categorie ? 2 : 0,
+              borderColor: "#1fa4db"
+            }}
+            onClick={() => categorieSelection(item.id)}
+          >
+            {item.categorie}
+          </button>
+        ))}        
       </section>
 
-      <button className='button_text_generate'>Gerar Frase</button>
+      <button className='button_text_generate' onClick={handleText}>Gerar Frase</button>
 
-      <p className='text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores eligendi pariatur laboriosam dolorem reiciendis accusantium sint illum debitis soluta aut placeat error iste necessitatibus repudiandae reprehenderit, velit fugiat modi? Deserunt.</p>
+      { text != "" && <p className='text'>"{text}"</p> }
     </div>
   )
 }
